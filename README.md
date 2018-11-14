@@ -80,8 +80,9 @@
     HashMap：基于哈希表实现。使用HashMap要求添加的键类明确定义了hashCode()和equals()[可以重写hashCode()和equals()]，为了优化HashMap空间的使用，您可以调优初始容量和负载因子。底层结构：由数组+链表组成
     TreeMap：基于红黑树实现。TreeMap没有调优选项，因为该树总处于平衡状态。
     
-### 2.4 hashmap其中参数负载因子 的实现原理是什么？
-
+### 2.4 hashmap其中参数负载因子的作用是什么？
+        在hashCode方法合理情况下，hasmap的负载因子，决定了数组存储的利用率，hashmap扩容的时机。具体扩容时机为：a.当前数组size > 负载因子 * 初始容量， b.新增元素时即将发生hashcode碰撞。
+        每次扩容变为原来的2倍，扩容后，会进行resize操作，移位运算值新增的那个bit随机给0或者1，是0的话索引没变，是1的话索引变成“原索引+oldCap”
 
 ### 2.5 hashmap每次扩容，增加多少容量? 实现原理
 
@@ -103,6 +104,8 @@
     synchronized类锁
         修饰静态方法、synchronized (类.class)
     实现原理：
+    
+    重入锁、公平锁、自循锁
     
 ### 2.9 ThreadLocal是什么？底层如何实现？ThreadLocal存储时，key是什么？
     ThreadLocal为变量在每个线程中都创建了一个副本，那么每个线程可以访问自己内部的副本变量
